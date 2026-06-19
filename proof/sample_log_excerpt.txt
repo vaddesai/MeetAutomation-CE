@@ -1,0 +1,26 @@
+--- Sanitized log excerpt — account details, URLs, and profile names redacted ---
+
+[2026-06-10 10:18:52] [schedule-config] Loaded config from .meet_automation_schedule.json.
+[2026-06-10 10:18:52] [network] Network reachable after attempt 1.
+[2026-06-10 10:18:52] [meet-handoff] Handing off to the Meet joiner.
+[2026-06-10 10:18:52] [meet-handoff] Executing: /path/to/.venv/bin/python meet_automation.py run ...
+
+[2026-06-10 10:18:53] [profile] Launching Chrome with profile `[PROFILE_DIR]`.
+[2026-06-10 10:18:53] [load] Opening: https://meet.google.com/[REDACTED]
+[2026-06-10 10:19:01] Screenshot saved: logs/.../meet_opened.png
+[2026-06-10 10:19:01] [identity] Signed-in join flow detected.
+[2026-06-10 10:19:03] [media] Turned microphone off.
+[2026-06-10 10:19:03] [media] Turned camera off.
+[2026-06-10 10:19:04] Screenshot saved: logs/.../prejoin_ready.png
+[2026-06-10 10:19:05] [join-click] Clicked the join button. Waiting for admission.
+[2026-06-10 10:19:05] Screenshot saved: logs/.../join_requested.png
+[2026-06-10 10:19:10] [admission] Waiting to be admitted.
+[2026-06-10 10:19:15] [admission] Waiting to be admitted.
+[2026-06-10 10:19:20] [admission] Waiting for the host to admit the account.
+[2026-06-10 10:19:25] Screenshot saved: logs/.../waiting_for_host.png
+[2026-06-10 10:20:02] [admission] Success: admitted into the meeting.
+[2026-06-10 10:20:02] Screenshot saved: logs/.../admitted.png
+[2026-06-10 10:20:02] Starting post-join caffeinate hold for 60 minute(s).
+[2026-06-10 10:20:02] [connected] Holding the session for 60 minute(s).
+
+--- Run completed successfully ---
