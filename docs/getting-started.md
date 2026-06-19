@@ -20,6 +20,13 @@ source .venv/bin/activate
 
 No third-party packages are required. The tool uses only the Python standard library.
 
+If virtualenv creation is interrupted and `.venv` is left in a partial state, rebuild it with:
+
+```sh
+python3 -m venv --clear .venv
+source .venv/bin/activate
+```
+
 ### 2. Enable JavaScript from Apple Events in Chrome
 
 Open Chrome, then:
@@ -85,6 +92,21 @@ This removes the LaunchAgent and clears the pmset wake schedule.
 ## Logs and screenshots
 
 All logs and screenshots are written to `logs/` relative to the project directory (or `$MEET_AUTOMATION_LOG_DIR` if set). Each scheduled run gets its own subdirectory under `logs/recurring_schedule_runs/`.
+
+## Quick smoke test
+
+Before publishing or sharing the repo, you can run this lightweight validation:
+
+```sh
+./.venv/bin/python --version
+./.venv/bin/python -m pip --version
+./.venv/bin/python -m compileall meet_automation.py browser common scheduler
+./.venv/bin/python meet_automation.py --help
+./.venv/bin/python meet_automation.py setup --help
+./.venv/bin/python meet_automation.py run --help
+./.venv/bin/python meet_automation.py schedule --help
+./.venv/bin/python meet_automation.py unschedule --help
+```
 
 ## Troubleshooting
 

@@ -57,3 +57,11 @@ run_scheduled_meet.sh     — Shell wrapper invoked by launchd
 ## What this edition does not include
 
 This community edition is a reference implementation. The production reliability layer — layered DOM fallback strategies, adaptive join-click retry tuning, advanced state classification, and AppleScript edge case handling developed through repeated real-world sessions — is not part of this release.
+
+The public runner intentionally keeps the DOM strategy small:
+
+- direct `button` lookups for `Ask to join` / `Join now`
+- basic `aria-label` checks for microphone and camera toggles
+- straightforward waiting-room polling and post-join hold behavior
+
+That keeps the repo credible and usable without publishing the full private reliability engine.

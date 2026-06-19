@@ -19,16 +19,21 @@ def resolve_log_dir() -> Path:
     return candidate.resolve()
 
 
-LOG_DIR = resolve_log_dir()
-LOG_DIR.mkdir(parents=True, exist_ok=True)
-LOG_FILE = LOG_DIR / "meet_automation.log"
+def ensure_log_dir() -> Path:
+    log_dir = resolve_log_dir()
+    log_dir.mkdir(parents=True, exist_ok=True)
+    return log_dir
+
+
+def resolve_log_file() -> Path:
+    return ensure_log_dir() / "meet_automation.log"
 
 
 def log(message: str) -> None:
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     formatted = f"[{timestamp}] {message}"
     print(formatted, flush=True)
-    with LOG_FILE.open("a", encoding="utf-8") as f:
+    with resolve_log_file().open("a", encoding="utf-8") as f:
         f.write(formatted + "\n")
 
 
@@ -38,7 +43,7 @@ def log_phase(phase: str, message: str) -> None:
 
 def save_chrome_screenshot(name: str) -> None:
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    path = LOG_DIR / f"{timestamp}_{name}.png"
+    path = ensure_log_dir() / f"{timestamp}_{name}.png"
     try:
         subprocess.run(["screencapture", "-x", str(path)], check=True)
         log(f"Screenshot saved: {path}")

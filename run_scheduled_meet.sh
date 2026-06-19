@@ -1,7 +1,8 @@
 #!/bin/zsh
 set -u
 
-PROJECT_DIR="$HOME/Automation/meet-automation-community"
+SCRIPT_DIR="${0:A:h}"
+PROJECT_DIR="${SCRIPT_DIR}"
 PYTHON="$PROJECT_DIR/.venv/bin/python"
 MAIN_SCRIPT="$PROJECT_DIR/meet_automation.py"
 LOG_ROOT="$PROJECT_DIR/logs"

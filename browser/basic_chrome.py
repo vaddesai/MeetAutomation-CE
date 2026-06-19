@@ -135,13 +135,14 @@ def click_join_button() -> bool:
 
 
 def fill_guest_name(display_name: str) -> None:
+    safe_display_name = json.dumps(display_name)
     execute_js(
         f"""
         (() => {{
             const field = document.querySelector('input[placeholder="Your name"]');
             if (!field || (field.value || "").trim()) return;
             field.focus();
-            field.value = "{display_name}";
+            field.value = {safe_display_name};
             field.dispatchEvent(new Event("input", {{ bubbles: true }}));
             field.dispatchEvent(new Event("change", {{ bubbles: true }}));
         }})()
@@ -151,7 +152,7 @@ def fill_guest_name(display_name: str) -> None:
 
 def turn_off_media() -> None:
     for device in ("microphone", "camera"):
-        execute_js(
+        result = execute_js(
             f"""
             (() => {{
                 const el = Array.from(
@@ -165,10 +166,14 @@ def turn_off_media() -> None:
                         rect.width > 0
                     );
                 }});
-                if (el) el.click();
+                if (!el) return "missing";
+                el.click();
+                return "clicked";
             }})()
             """
         )
+        if result == "clicked":
+            log_phase("media", f"Turned {device} off.")
 
 
 def is_admitted(state: dict) -> bool:

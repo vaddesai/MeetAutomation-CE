@@ -11,7 +11,7 @@ A redacted log excerpt from a successful scheduled run. It shows the full phase 
 - `profile` — Chrome launches with the correct profile
 - `load` — Meet URL is opened and the page stabilizes
 - `identity` — The signed-in account is detected (no guest flow needed)
-- `media` — Microphone and camera are confirmed off before joining
+- `media` — The runner attempts to turn microphone and camera off before joining
 - `join-click` — The Ask to join button is located and clicked
 - `admission` — The tool polls the page until the host admits the account
 - `connected` — Post-join hold window runs for the configured duration

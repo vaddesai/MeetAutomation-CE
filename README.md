@@ -25,7 +25,8 @@ macOS only. Requires Google Chrome installed at `/Applications/Google Chrome.app
 
 ```sh
 # 1. Create a virtual environment (no extra packages needed)
-python3 -m venv .venv && source .venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 
 # 2. Enable JavaScript from Apple Events in Chrome:
 #    View > Developer > Allow JavaScript from Apple Events
@@ -45,6 +46,13 @@ python meet_automation.py schedule
 
 # 6. Remove the schedule
 python meet_automation.py unschedule
+```
+
+If `python3 -m venv .venv` is interrupted and leaves a partial environment behind, rebuild it with:
+
+```sh
+python3 -m venv --clear .venv
+source .venv/bin/activate
 ```
 
 ## CLI reference
@@ -89,6 +97,16 @@ The [proof/](proof/) folder contains a sanitized log excerpt showing a complete 
 - [Getting started](docs/getting-started.md)
 - [Architecture](docs/architecture.md)
 - [Scheduling deep dive](docs/scheduling.md)
+
+## Pre-publish smoke test
+
+```sh
+./.venv/bin/python --version
+./.venv/bin/python -m pip --version
+./.venv/bin/python -m compileall meet_automation.py browser common scheduler
+./.venv/bin/python meet_automation.py --help
+./.venv/bin/python meet_automation.py run --help
+```
 
 ## License
 
